@@ -49,7 +49,7 @@ void main() {
   });
 
   final tTvShowList = <TvShow>[tvShow];
-  final tId = 163461;
+  const tId = 163461;
 
   void _arrangeUsecase() {
     when(mockGetTvShowDetail.execute(tId))
@@ -153,7 +153,7 @@ void main() {
     test('should execute save watchlist when function called', () async {
       // arrange
       when(mockTvShowSaveWatchlist.execute(tvShowDetailEntity))
-          .thenAnswer((_) async => Right('Success'));
+          .thenAnswer((_) async => const Right('Success'));
       when(mockGetTvShowWatchListStatus.execute(tvShowDetailEntity.id))
           .thenAnswer((_) async => true);
       // act
@@ -165,7 +165,7 @@ void main() {
     test('should execute remove watchlist when function called', () async {
       // arrange
       when(mockTvShowRemoveWatchlist.execute(tvShowDetailEntity))
-          .thenAnswer((_) async => Right('Removed'));
+          .thenAnswer((_) async => const Right('Removed'));
       when(mockGetTvShowWatchListStatus.execute(tvShowDetailEntity.id))
           .thenAnswer((_) async => false);
       // act
@@ -177,7 +177,7 @@ void main() {
     test('should update watchlist status when add watchlist success', () async {
       // arrange
       when(mockTvShowSaveWatchlist.execute(tvShowDetailEntity))
-          .thenAnswer((_) async => Right('Added to Watchlist'));
+          .thenAnswer((_) async => const Right('Added to Watchlist'));
       when(mockGetTvShowWatchListStatus.execute(tvShowDetailEntity.id))
           .thenAnswer((_) async => true);
       // act

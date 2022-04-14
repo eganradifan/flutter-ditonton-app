@@ -65,8 +65,7 @@ class TvShowDetailModel extends Equatable {
   factory TvShowDetailModel.fromJson(Map<String, dynamic> json) =>
       TvShowDetailModel(
         adult: json["adult"],
-        backdropPath:
-            json["backdrop_path"] == null ? "" : json["backdrop_path"],
+        backdropPath: json["backdrop_path"] ?? "",
         createdBy: List<CreatedBy>.from(
             json["created_by"].map((x) => CreatedBy.fromJson(x))),
         episodeRunTime: List<int>.from(json["episode_run_time"].map((x) => x)),
@@ -86,7 +85,7 @@ class TvShowDetailModel extends Equatable {
         originalName: json["original_name"],
         overview: json["overview"],
         popularity: json["popularity"].toDouble(),
-        posterPath: json["poster_path"] == null ? "" : json["poster_path"],
+        posterPath: json["poster_path"] ?? "",
         productionCompanies:
             List<dynamic>.from(json["production_companies"].map((x) => x)),
         productionCountries:

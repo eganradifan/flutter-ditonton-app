@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:ditonton/common/utils.dart';
 import 'package:about/about.dart';
 import 'package:core/presentation/pages/movie_detail_page.dart';
 import 'package:core/presentation/pages/home_movie_page.dart';

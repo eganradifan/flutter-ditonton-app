@@ -37,8 +37,8 @@ class _TvShowDetailPageState extends State<TvShowDetailPage> {
       body: Consumer<TvShowDetailNotifier>(
         builder: (context, provider, child) {
           if (provider.state == RequestState.Loading) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return const Center(
+              child: const CircularProgressIndicator(),
             );
           } else if (provider.state == RequestState.Loaded) {
             final tvShow = provider.tvShows;
@@ -76,7 +76,7 @@ class DetailContent extends StatelessWidget {
           child: DraggableScrollableSheet(
             builder: (context, scrollController) {
               return Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: kRichBlack,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                 ),
@@ -139,9 +139,9 @@ class DetailContent extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   isAddedWatchlist
-                                      ? Icon(Icons.check)
-                                      : Icon(Icons.add),
-                                  Text('Watchlist'),
+                                      ? const Icon(Icons.check)
+                                      : const Icon(Icons.add),
+                                  const Text('Watchlist'),
                                 ],
                               ),
                             ),
@@ -158,7 +158,7 @@ class DetailContent extends StatelessWidget {
                                 RatingBarIndicator(
                                   rating: tvShow.voteAverage / 2,
                                   itemCount: 5,
-                                  itemBuilder: (context, index) => Icon(
+                                  itemBuilder: (context, index) => const Icon(
                                     Icons.star,
                                     color: kMikadoYellow,
                                   ),
@@ -167,7 +167,7 @@ class DetailContent extends StatelessWidget {
                                 Text('${tvShow.voteAverage}')
                               ],
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Row(
                               children: [
                                 Text(
@@ -180,7 +180,7 @@ class DetailContent extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Row(
                               children: [
                                 Text(
@@ -193,7 +193,7 @@ class DetailContent extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Text(
                               'Overview',
                               style: kHeading6,
@@ -201,7 +201,7 @@ class DetailContent extends StatelessWidget {
                             Text(
                               tvShow.overview,
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Text(
                               'Recommendations',
                               style: kHeading6,
@@ -228,7 +228,7 @@ class DetailContent extends StatelessWidget {
             // maxChildSize: 1.0,
           ),
         ),
-        DetailBackButton()
+        const DetailBackButton()
       ],
     );
   }
@@ -237,7 +237,7 @@ class DetailContent extends StatelessWidget {
     return Consumer<TvShowDetailNotifier>(
       builder: (context, data, child) {
         if (data.recommendationState == RequestState.Loading) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (data.recommendationState == RequestState.Error) {
@@ -277,10 +277,10 @@ class DetailContent extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: 'https://image.tmdb.org/t/p/w500$posterPath',
       width: screenWidth,
-      placeholder: (context, url) => Center(
-        child: CircularProgressIndicator(),
+      placeholder: (context, url) => const Center(
+        child: const CircularProgressIndicator(),
       ),
-      errorWidget: (context, url, error) => Icon(Icons.error),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   }
 
