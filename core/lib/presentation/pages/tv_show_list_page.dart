@@ -4,7 +4,6 @@ import 'package:core/utils/routes.dart';
 import '../../domain/entities/tv_show/tv_show.dart';
 import '../../presentation/pages/now_playing_page.dart';
 import '../../presentation/pages/popular_movies_page.dart';
-import '../../presentation/pages/search_page.dart';
 import '../../presentation/pages/top_rated_movies_page.dart';
 import '../../presentation/pages/tv_show_detail_page.dart';
 import '../../presentation/pages/watchlist_movies_page.dart';
@@ -79,8 +78,7 @@ class _TvShowListPageState extends State<TvShowListPage> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, SearchPage.ROUTE_NAME,
-                    arguments: true);
+                Navigator.pushNamed(context, SEARCH_ROUTE, arguments: true);
               },
               icon: const Icon(Icons.search),
             )

@@ -1,6 +1,6 @@
-import '../../../utils/state_enum.dart';
-import '../../../domain/entities/tv_show/tv_show.dart';
-import '../../../domain/usecases/tv_show/search_tv_shows.dart';
+import 'package:core/core.dart';
+import 'package:core/domain/entities/tv_show/tv_show.dart';
+import 'package:search/domain/usecases/tv_show/search_tv_shows.dart';
 import 'package:flutter/cupertino.dart';
 
 class TvShowsSearchNotifier extends ChangeNotifier {

@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
-import '../../presentation/provider/movie/movie_search_notifier.dart';
-import '../../presentation/provider/tv_show/tv_show_search_notifier.dart';
-import '../../presentation/widgets/movie_card_list.dart';
-import '../../presentation/widgets/tv_show_card_list.dart';
+import '../provider/movie/movie_search_notifier.dart';
+import '../provider/tv_show/tv_show_search_notifier.dart';
+import 'package:core/presentation/widgets/movie_card_list.dart';
+import 'package:core/presentation/widgets/tv_show_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

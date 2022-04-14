@@ -5,7 +5,6 @@ import '../../domain/entities/movies/movie.dart';
 import 'package:core/utils/routes.dart';
 import './movie_detail_page.dart';
 import './popular_movies_page.dart';
-import './search_page.dart';
 import './top_rated_movies_page.dart';
 import './tv_show_list_page.dart';
 import './watchlist_movies_page.dart';
@@ -79,8 +78,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, SearchPage.ROUTE_NAME,
-                  arguments: false);
+              Navigator.pushNamed(context, SEARCH_ROUTE, arguments: false);
             },
             icon: const Icon(Icons.search),
           )

@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
 import 'package:core/domain/entities/tv_show/tv_show.dart';
-import 'package:core/domain/usecases/tv_show/search_tv_shows.dart';
-import 'package:core/presentation/provider/tv_show/tv_show_search_notifier.dart';
+import '../../../../../search/lib/domain/usecases/tv_show/search_tv_shows.dart';
+import '../../../../../search/lib/presentation/provider/tv_show/tv_show_search_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../dummy_data/dummy_objects.dart';
+import '../../../dumm_data/dummy_objects.dart';
 import 'tv_show_search_notifier_test.mocks.dart';
 
 @GenerateMocks([SearchTvShows])
