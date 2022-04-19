@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/domain/entities/tv_show/tv_show.dart';
-import '../../../../../search/lib/domain/usecase/tv_show/search_tv_shows.dart';
+import 'package:search/domain/usecases/tv_show/search_tv_shows.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../helpers/test_helper.mocks.dart';
+import '../../../../../core/test/helpers/test_helper.mocks.dart';
 
 void main() {
   late MockTvShowRepository mockTvShowRepository;

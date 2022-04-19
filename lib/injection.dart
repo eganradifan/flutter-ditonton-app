@@ -29,6 +29,7 @@ import 'package:core/domain/usecases/tv_show/tv_show_remove_watchlist.dart';
 import 'package:core/domain/usecases/tv_show/tv_show_save_watchlist.dart';
 import 'package:core/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:core/presentation/provider/movie/movie_list_notifier.dart';
+import 'package:search/presentation/bloc/search_bloc.dart';
 import 'package:search/presentation/provider/movie/movie_search_notifier.dart';
 import 'package:core/presentation/provider/tv_show/now_playing_tv_show_notifier.dart';
 import 'package:core/presentation/provider/movie/popular_movies_notifier.dart';
@@ -170,6 +171,13 @@ void init() {
       () => MovieLocalDataSourceImpl(databaseHelper: locator()));
   locator.registerLazySingleton<TvShowLocalDataSource>(
       () => TvShowLocalDataSourceImpl(databaseHelper: locator()));
+
+  // bloc
+  locator.registerFactory(
+    () => SearchBloc(
+      locator(),
+    ),
+  );
 
   // helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());

@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
 import 'package:core/domain/entities/tv_show/tv_show.dart';
-import '../../../../../search/lib/domain/usecases/tv_show/search_tv_shows.dart';
-import '../../../../../search/lib/presentation/provider/tv_show/tv_show_search_notifier.dart';
+import 'package:search/domain/usecases/tv_show/search_tv_shows.dart';
+import 'package:search/presentation/provider/tv_show/tv_show_search_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

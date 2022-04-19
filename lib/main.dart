@@ -23,6 +23,10 @@ import 'package:core/presentation/provider/tv_show/top_rated_tv_shows_notifier.d
 import 'package:core/presentation/provider/tv_show/tv_show_detail_notifier.dart';
 import 'package:core/presentation/provider/tv_show/watchlist_tv_show_notifier.dart';
 import 'package:core/presentation/provider/tv_show/now_playing_tv_show_notifier.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:search/presentation/bloc/search_bloc.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -76,6 +80,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistTvShowNotifier>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<SearchBloc>(),
         ),
       ],
       child: MaterialApp(

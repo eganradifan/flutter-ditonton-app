@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/domain/entities/movies/movie.dart';
-import '../../../../../search/lib/domain/usecase/movie/search_movies.dart';
+import 'package:search/domain/usecases/movie/search_movies.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../helpers/test_helper.mocks.dart';
+import '../../../../../core/test/helpers/test_helper.mocks.dart';
 
 void main() {
   late SearchMovies usecase;
