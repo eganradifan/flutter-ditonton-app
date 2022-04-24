@@ -12,12 +12,10 @@ import 'package:core/presentation/pages/watchlist_movies_page.dart';
 
 import 'package:core/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:core/presentation/provider/movie/movie_list_notifier.dart';
-import 'package:search/presentation/provider/movie/movie_search_notifier.dart';
 import 'package:core/presentation/provider/movie/popular_movies_notifier.dart';
 import 'package:core/presentation/provider/movie/top_rated_movies_notifier.dart';
 import 'package:core/presentation/provider/movie/watchlist_movie_notifier.dart';
 import 'package:core/presentation/provider/tv_show/tv_show_list_notifier.dart';
-import 'package:search/presentation/provider/tv_show/tv_show_search_notifier.dart';
 import 'package:core/presentation/provider/tv_show/popular_tv_shows_notifier.dart';
 import 'package:core/presentation/provider/tv_show/top_rated_tv_shows_notifier.dart';
 import 'package:core/presentation/provider/tv_show/tv_show_detail_notifier.dart';
@@ -26,6 +24,7 @@ import 'package:core/presentation/provider/tv_show/now_playing_tv_show_notifier.
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search/presentation/bloc/search_bloc.dart';
+import 'package:search/presentation/bloc/tv_show_search_bloc.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -58,12 +57,6 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<TvShowDetailNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<MovieSearchNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvShowsSearchNotifier>(),
-        ),
-        ChangeNotifierProvider(
           create: (_) => di.locator<TopRatedMoviesNotifier>(),
         ),
         ChangeNotifierProvider(
@@ -86,6 +79,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.locator<SearchBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TvShowSearchBloc>(),
         ),
       ],
       child: MaterialApp(

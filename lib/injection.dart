@@ -29,8 +29,6 @@ import 'package:core/domain/usecases/tv_show/tv_show_remove_watchlist.dart';
 import 'package:core/domain/usecases/tv_show/tv_show_save_watchlist.dart';
 import 'package:core/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:core/presentation/provider/movie/movie_list_notifier.dart';
-import 'package:search/presentation/bloc/search_bloc.dart';
-import 'package:search/presentation/provider/movie/movie_search_notifier.dart';
 import 'package:core/presentation/provider/tv_show/now_playing_tv_show_notifier.dart';
 import 'package:core/presentation/provider/movie/popular_movies_notifier.dart';
 import 'package:core/presentation/provider/tv_show/popular_tv_shows_notifier.dart';
@@ -38,9 +36,12 @@ import 'package:core/presentation/provider/movie/top_rated_movies_notifier.dart'
 import 'package:core/presentation/provider/tv_show/top_rated_tv_shows_notifier.dart';
 import 'package:core/presentation/provider/tv_show/tv_show_detail_notifier.dart';
 import 'package:core/presentation/provider/tv_show/tv_show_list_notifier.dart';
-import 'package:search/presentation/provider/tv_show/tv_show_search_notifier.dart';
 import 'package:core/presentation/provider/movie/watchlist_movie_notifier.dart';
 import 'package:core/presentation/provider/tv_show/watchlist_tv_show_notifier.dart';
+
+import 'package:search/presentation/bloc/search_bloc.dart';
+import 'package:search/presentation/bloc/tv_show_search_bloc.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
@@ -80,16 +81,7 @@ void init() {
       saveWatchlist: locator(),
     ),
   );
-  locator.registerFactory(
-    () => MovieSearchNotifier(
-      searchMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvShowsSearchNotifier(
-      searchTvShows: locator(),
-    ),
-  );
+
   locator.registerFactory(
     () => PopularMoviesNotifier(
       locator(),
@@ -175,6 +167,11 @@ void init() {
   // bloc
   locator.registerFactory(
     () => SearchBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvShowSearchBloc(
       locator(),
     ),
   );
