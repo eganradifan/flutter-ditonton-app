@@ -18,6 +18,8 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   sqflite_sqlcipher: ^2.1.0
   encrypt: ^5.0.1
+  flutter_bloc: ^8.0.0
+  rxdart: ^0.27.1
 
 dev_dependencies:
   flutter_test:
@@ -25,6 +27,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   mockito: ^5.0.8
   build_runner: ^2.0.4
+  bloc_test: ^9.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

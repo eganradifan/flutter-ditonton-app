@@ -41,6 +41,9 @@ import 'package:core/presentation/provider/tv_show/watchlist_tv_show_notifier.da
 
 import 'package:search/presentation/bloc/search_bloc.dart';
 import 'package:search/presentation/bloc/tv_show_search_bloc.dart';
+import 'package:core/presentation/bloc/tv_show/now_playing/tv_show_now_playing_bloc.dart';
+import 'package:core/presentation/bloc/tv_show/popular/tv_show_popular_bloc.dart';
+import 'package:core/presentation/bloc/tv_show/top_rated/tv_show_top_rated_bloc.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
@@ -167,6 +170,21 @@ void init() {
   // bloc
   locator.registerFactory(
     () => SearchBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvShowNowPlayingBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvShowPopularBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvShowTopRatedBloc(
       locator(),
     ),
   );
