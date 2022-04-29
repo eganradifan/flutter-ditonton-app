@@ -1,8 +1,8 @@
-import '../../../utils/state_enum.dart';
-import '../../presentation/provider/tv_show/now_playing_tv_show_notifier.dart';
+import 'package:core/presentation/bloc/tv_show/now_playing/tv_show_now_playing_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../presentation/widgets/tv_show_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class NowPlayingPage extends StatefulWidget {
   static const ROUTE_NAME = '/now-playing';
@@ -17,15 +17,15 @@ class _NowPlayingPageState extends State<NowPlayingPage> {
   void initState() {
     super.initState();
     Future.microtask(() =>
-        Provider.of<NowPlayingTvShowNotifier>(context, listen: false)
-            .fetchNowPlayingTvShows());
+        BlocProvider.of<TvShowNowPlayingBloc>(context, listen: false)
+            .add(FetchNowPlayingTvShows()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tv Shows'),
+        title: const Text('Tv Shows'),
       ),
       body:
           Padding(padding: const EdgeInsets.all(8.0), child: _renderTvShows()),
@@ -33,25 +33,27 @@ class _NowPlayingPageState extends State<NowPlayingPage> {
   }
 
   Widget _renderTvShows() {
-    return Consumer<NowPlayingTvShowNotifier>(
-      builder: (context, data, child) {
-        if (data.state == RequestState.Loading) {
-          return Center(
+    return BlocBuilder<TvShowNowPlayingBloc, TvShowNowPlayingState>(
+      builder: (context, state) {
+        if (state is TvShowNowPlayingLoading) {
+          return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.state == RequestState.Loaded) {
+        } else if (state is TvShowNowPlayingHasData) {
           return ListView.builder(
             itemBuilder: (context, index) {
-              final movie = data.tvShows[index];
+              final movie = state.result[index];
               return TvShowCard(movie);
             },
-            itemCount: data.tvShows.length,
+            itemCount: state.result.length,
+          );
+        } else if (state is TvShowNowPlayingError) {
+          return Center(
+            key: const Key('error_message'),
+            child: Text(state.message),
           );
         } else {
-          return Center(
-            key: Key('error_message'),
-            child: Text(data.message),
-          );
+          return Container();
         }
       },
     );

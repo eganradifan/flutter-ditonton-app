@@ -76,8 +76,6 @@ class TvShowListNotifier extends ChangeNotifier {
       _message = failure.message;
       notifyListeners();
     }, (tvShowsData) {
-      print(tvShowsData);
-
       _popularTvShowsState = RequestState.Loaded;
       _popularTvShows = tvShowsData;
       notifyListeners();
