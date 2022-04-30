@@ -50,9 +50,6 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<MovieListNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<TvShowListNotifier>(),
-        ),
-        ChangeNotifierProvider(
           create: (_) => di.locator<MovieDetailNotifier>(),
         ),
         ChangeNotifierProvider(
@@ -62,13 +59,7 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<TopRatedMoviesNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedTvShowsNotifier>(),
-        ),
-        ChangeNotifierProvider(
           create: (_) => di.locator<PopularMoviesNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<NowPlayingTvShowNotifier>(),
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistMovieNotifier>(),

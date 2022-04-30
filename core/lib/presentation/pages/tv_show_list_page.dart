@@ -1,15 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
+import 'package:core/presentation/bloc/tv_show/now_playing/tv_show_now_playing_bloc.dart';
+import 'package:core/presentation/bloc/tv_show/popular/tv_show_popular_bloc.dart';
+import 'package:core/presentation/bloc/tv_show/top_rated/tv_show_top_rated_bloc.dart';
 import 'package:core/utils/routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/tv_show/tv_show.dart';
 import '../../presentation/pages/now_playing_page.dart';
 import '../../presentation/pages/popular_movies_page.dart';
 import '../../presentation/pages/top_rated_movies_page.dart';
 import '../../presentation/pages/tv_show_detail_page.dart';
 import '../../presentation/pages/watchlist_movies_page.dart';
-import '../../presentation/provider/tv_show/tv_show_list_notifier.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class TvShowListPage extends StatefulWidget {
   static const ROUTE_NAME = '/tv-shows-list';
@@ -22,11 +24,18 @@ class _TvShowListPageState extends State<TvShowListPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-        () => Provider.of<TvShowListNotifier>(context, listen: false)
-          ..fetchNowPlayingTvShows()
-          ..fetcTopRatedTvShows()
-          ..fetcPopularTvShows());
+    Future.microtask(() => {
+          BlocProvider.of<TvShowTopRatedBloc>(context, listen: false)
+              .add(FetchTopRatedTvShows())
+        });
+    Future.microtask(() => {
+          BlocProvider.of<TvShowNowPlayingBloc>(context, listen: false)
+              .add(FetchNowPlayingTvShows())
+        });
+    Future.microtask(() => {
+          BlocProvider.of<TvShowPopularBloc>(context, listen: false)
+              .add(FetchPopularTvShows())
+        });
   }
 
   @override
@@ -96,16 +105,18 @@ class _TvShowListPageState extends State<TvShowListPage> {
                       context, NowPlayingPage.ROUTE_NAME,
                       arguments: true),
                 ),
-                Consumer<TvShowListNotifier>(builder: (context, data, child) {
-                  final state = data.nowPlayingState;
-                  if (state == RequestState.Loading) {
+                BlocBuilder<TvShowNowPlayingBloc, TvShowNowPlayingState>(
+                    builder: (context, state) {
+                  if (state is TvShowNowPlayingLoading) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
-                  } else if (state == RequestState.Loaded) {
-                    return TvShowList(data.nowPlayingTvShows);
-                  } else {
+                  } else if (state is TvShowNowPlayingHasData) {
+                    return TvShowList(state.result);
+                  } else if (state is TvShowNowPlayingError) {
                     return const Text('Failed');
+                  } else {
+                    return Container();
                   }
                 }),
                 _buildSubHeading(
@@ -114,16 +125,18 @@ class _TvShowListPageState extends State<TvShowListPage> {
                       context, PopularMoviesPage.ROUTE_NAME,
                       arguments: true),
                 ),
-                Consumer<TvShowListNotifier>(builder: (context, data, child) {
-                  final state = data.popularTvShowsState;
-                  if (state == RequestState.Loading) {
+                BlocBuilder<TvShowPopularBloc, TvShowPopularState>(
+                    builder: (context, state) {
+                  if (state is TvShowPopularLoading) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
-                  } else if (state == RequestState.Loaded) {
-                    return TvShowList(data.popularTvShows);
-                  } else {
+                  } else if (state is TvShowPopularHasData) {
+                    return TvShowList(state.result);
+                  } else if (state is TvShowPopularError) {
                     return const Text('Failed');
+                  } else {
+                    return Container();
                   }
                 }),
                 _buildSubHeading(
@@ -132,16 +145,18 @@ class _TvShowListPageState extends State<TvShowListPage> {
                       context, TopRatedMoviesPage.ROUTE_NAME,
                       arguments: true),
                 ),
-                Consumer<TvShowListNotifier>(builder: (context, data, child) {
-                  final state = data.topRatedTvShowsState;
-                  if (state == RequestState.Loading) {
+                BlocBuilder<TvShowTopRatedBloc, TvShowTopRatedState>(
+                    builder: (context, state) {
+                  if (state is TvShowTopRatedLoading) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
-                  } else if (state == RequestState.Loaded) {
-                    return TvShowList(data.topRatedTvShows);
-                  } else {
+                  } else if (state is TvShowTopRatedHasData) {
+                    return TvShowList(state.result);
+                  } else if (state is TvShowTopRatedError) {
                     return const Text('Failed');
+                  } else {
+                    return Container();
                   }
                 }),
               ],
@@ -163,10 +178,7 @@ class _TvShowListPageState extends State<TvShowListPage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              children: [
-                const Text('See More'),
-                const Icon(Icons.arrow_forward_ios)
-              ],
+              children: const [Text('See More'), Icon(Icons.arrow_forward_ios)],
             ),
           ),
         ),
