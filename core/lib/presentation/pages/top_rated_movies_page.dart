@@ -1,3 +1,4 @@
+import 'package:core/presentation/bloc/movie/top_rated/movie_top_rated_bloc.dart';
 import 'package:core/presentation/bloc/tv_show/top_rated/tv_show_top_rated_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,8 +27,8 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
               .add(FetchTopRatedTvShows()));
     } else {
       Future.microtask(() =>
-          Provider.of<TopRatedMoviesNotifier>(context, listen: false)
-              .fetchTopRatedMovies());
+          BlocProvider.of<MovieTopRatedBloc>(context, listen: false)
+              .add(FetchTopRatedMovies()));
     }
   }
 
@@ -71,25 +72,27 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
   }
 
   Widget _renderMovies() {
-    return Consumer<TopRatedMoviesNotifier>(
-      builder: (context, data, child) {
-        if (data.state == RequestState.Loading) {
+    return BlocBuilder<MovieTopRatedBloc, MovieTopRatedState>(
+      builder: (context, state) {
+        if (state is MovieTopRatedLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.state == RequestState.Loaded) {
+        } else if (state is MovieTopRatedHasData) {
           return ListView.builder(
             itemBuilder: (context, index) {
-              final movie = data.movies[index];
+              final movie = state.result[index];
               return MovieCard(movie);
             },
-            itemCount: data.movies.length,
+            itemCount: state.result.length,
           );
-        } else {
+        } else if (state is MovieTopRatedError) {
           return Center(
             key: const Key('error_message'),
-            child: Text(data.message),
+            child: Text(state.message),
           );
+        } else {
+          return Container();
         }
       },
     );
