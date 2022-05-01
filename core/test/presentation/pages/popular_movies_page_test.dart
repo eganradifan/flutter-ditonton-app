@@ -1,40 +1,62 @@
-import 'package:core/core.dart';
+import 'package:bloc_test/bloc_test.dart';
 import 'package:core/domain/entities/movies/movie.dart';
 import 'package:core/domain/entities/tv_show/tv_show.dart';
+import 'package:core/presentation/bloc/movie/popular/movie_popular_bloc.dart';
+import 'package:core/presentation/bloc/tv_show/popular/tv_show_popular_bloc.dart';
 import 'package:core/presentation/pages/popular_movies_page.dart';
-import 'package:core/presentation/provider/movie/popular_movies_notifier.dart';
-import 'package:core/presentation/provider/tv_show/popular_tv_shows_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'popular_movies_page_test.mocks.dart';
+class MockTvShowPopularBloc
+    extends MockBloc<TvShowPopularEvent, TvShowPopularState>
+    implements TvShowPopularBloc {}
 
-@GenerateMocks([PopularMoviesNotifier, PopularTvShowsNotifier])
+class TvShowPopularEventFake extends Fake implements TvShowPopularEvent {}
+
+class TvShowPopularStateFake extends Fake implements TvShowPopularState {}
+
+class MockMoviePopularBloc
+    extends MockBloc<MoviePopularEvent, MoviePopularState>
+    implements MoviePopularBloc {}
+
+class MoviePopularEventFake extends Fake implements MoviePopularEvent {}
+
+class MoviePopularStateFake extends Fake implements MoviePopularState {}
+
 void main() {
-  late MockPopularMoviesNotifier mockNotifier;
-  late MockPopularTvShowsNotifier mockPopularTvShowsNotifier;
+  late TvShowPopularBloc tvShowPopularBloc;
+  late MoviePopularBloc moviePopularBloc;
 
   setUp(() {
-    mockNotifier = MockPopularMoviesNotifier();
-    mockPopularTvShowsNotifier = MockPopularTvShowsNotifier();
+    tvShowPopularBloc = MockTvShowPopularBloc();
+    moviePopularBloc = MockMoviePopularBloc();
+  });
+
+  setUpAll(() {
+    registerFallbackValue(TvShowPopularEventFake());
+    registerFallbackValue(TvShowPopularStateFake());
+    registerFallbackValue(MoviePopularEventFake());
+    registerFallbackValue(MoviePopularStateFake());
   });
 
   group('popular movie', () {
     Widget _makeTestableWidget(Widget body) {
-      return ChangeNotifierProvider<PopularMoviesNotifier>.value(
-        value: mockNotifier,
+      return BlocProvider<MoviePopularBloc>.value(
+        value: moviePopularBloc,
         child: MaterialApp(
-          home: body,
+          home: Scaffold(
+              body: PopularMoviesPage(
+            isTvShow: false,
+          )),
         ),
       );
     }
 
     testWidgets('Page should display center progress bar when loading',
         (WidgetTester tester) async {
-      when(mockNotifier.state).thenReturn(RequestState.Loading);
+      when(() => moviePopularBloc.state).thenReturn(MoviePopularLoading());
 
       final progressBarFinder = find.byType(CircularProgressIndicator);
       final centerFinder = find.byType(Center);
@@ -47,8 +69,8 @@ void main() {
 
     testWidgets('Page should display ListView when data is loaded',
         (WidgetTester tester) async {
-      when(mockNotifier.state).thenReturn(RequestState.Loaded);
-      when(mockNotifier.movies).thenReturn(<Movie>[]);
+      when(() => moviePopularBloc.state)
+          .thenReturn(MoviePopularHasData(const <Movie>[]));
 
       final listViewFinder = find.byType(ListView);
 
@@ -59,10 +81,10 @@ void main() {
 
     testWidgets('Page should display text with message when Error',
         (WidgetTester tester) async {
-      when(mockNotifier.state).thenReturn(RequestState.Error);
-      when(mockNotifier.message).thenReturn('Error message');
+      when(() => moviePopularBloc.state)
+          .thenReturn(MoviePopularError("Error message"));
 
-      final textFinder = find.byKey(Key('error_message'));
+      final textFinder = find.byKey(const Key('error_message'));
 
       await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
 
@@ -72,17 +94,20 @@ void main() {
 
   group('popular tv show', () {
     Widget _makeTestableWidget(Widget body) {
-      return ChangeNotifierProvider<PopularTvShowsNotifier>.value(
-        value: mockPopularTvShowsNotifier,
+      return BlocProvider<TvShowPopularBloc>.value(
+        value: tvShowPopularBloc,
         child: MaterialApp(
-          home: body,
+          home: Scaffold(
+              body: PopularMoviesPage(
+            isTvShow: true,
+          )),
         ),
       );
     }
 
     testWidgets('Page should display center progress bar when loading',
         (WidgetTester tester) async {
-      when(mockPopularTvShowsNotifier.state).thenReturn(RequestState.Loading);
+      when(() => tvShowPopularBloc.state).thenReturn(TvShowPopularLoading());
 
       final progressBarFinder = find.byType(CircularProgressIndicator);
       final centerFinder = find.byType(Center);
@@ -97,8 +122,8 @@ void main() {
 
     testWidgets('Page should display ListView when data is loaded',
         (WidgetTester tester) async {
-      when(mockPopularTvShowsNotifier.state).thenReturn(RequestState.Loaded);
-      when(mockPopularTvShowsNotifier.tvShows).thenReturn(<TvShow>[]);
+      when(() => tvShowPopularBloc.state)
+          .thenReturn(TvShowPopularHasData(const <TvShow>[]));
 
       final listViewFinder = find.byType(ListView);
 
@@ -110,10 +135,10 @@ void main() {
 
     testWidgets('Page should display text with message when Error',
         (WidgetTester tester) async {
-      when(mockPopularTvShowsNotifier.state).thenReturn(RequestState.Error);
-      when(mockPopularTvShowsNotifier.message).thenReturn('Error message');
+      when(() => tvShowPopularBloc.state)
+          .thenReturn(TvShowPopularError("Error Message"));
 
-      final textFinder = find.byKey(Key('error_message'));
+      final textFinder = find.byKey(const Key('error_message'));
 
       await tester
           .pumpWidget(_makeTestableWidget(PopularMoviesPage(isTvShow: true)));
