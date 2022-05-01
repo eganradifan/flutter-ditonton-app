@@ -28,14 +28,7 @@ import 'package:search/domain/usecases/tv_show/search_tv_shows.dart';
 import 'package:core/domain/usecases/tv_show/tv_show_remove_watchlist.dart';
 import 'package:core/domain/usecases/tv_show/tv_show_save_watchlist.dart';
 import 'package:core/presentation/provider/movie/movie_detail_notifier.dart';
-import 'package:core/presentation/provider/movie/movie_list_notifier.dart';
-import 'package:core/presentation/provider/tv_show/now_playing_tv_show_notifier.dart';
-import 'package:core/presentation/provider/movie/popular_movies_notifier.dart';
-import 'package:core/presentation/provider/tv_show/popular_tv_shows_notifier.dart';
-import 'package:core/presentation/provider/movie/top_rated_movies_notifier.dart';
-import 'package:core/presentation/provider/tv_show/top_rated_tv_shows_notifier.dart';
 import 'package:core/presentation/provider/tv_show/tv_show_detail_notifier.dart';
-import 'package:core/presentation/provider/tv_show/tv_show_list_notifier.dart';
 import 'package:core/presentation/provider/movie/watchlist_movie_notifier.dart';
 import 'package:core/presentation/provider/tv_show/watchlist_tv_show_notifier.dart';
 
@@ -56,20 +49,6 @@ final locator = GetIt.instance;
 void init() {
   // provider
   locator.registerFactory(
-    () => MovieListNotifier(
-      getNowPlayingMovies: locator(),
-      getPopularMovies: locator(),
-      getTopRatedMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvShowListNotifier(
-      getNowPlayingTvShows: locator(),
-      getPopularTvShows: locator(),
-      getTopRatedTvShows: locator(),
-    ),
-  );
-  locator.registerFactory(
     () => MovieDetailNotifier(
       getMovieDetail: locator(),
       getMovieRecommendations: locator(),
@@ -85,32 +64,6 @@ void init() {
       getWatchListStatus: locator(),
       removeWatchlist: locator(),
       saveWatchlist: locator(),
-    ),
-  );
-
-  locator.registerFactory(
-    () => PopularMoviesNotifier(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => PopularTvShowsNotifier(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TopRatedMoviesNotifier(
-      getTopRatedMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TopRatedTvShowsNotifier(
-      getTopRatedTvShows: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => NowPlayingTvShowNotifier(
-      getNowPlayingTvShows: locator(),
     ),
   );
   locator.registerFactory(
@@ -171,46 +124,14 @@ void init() {
       () => TvShowLocalDataSourceImpl(databaseHelper: locator()));
 
   // bloc
-  locator.registerFactory(
-    () => SearchBloc(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => MovieNowPlayingBloc(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => MoviePopularBloc(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => MovieTopRatedBloc(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvShowNowPlayingBloc(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvShowPopularBloc(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvShowTopRatedBloc(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvShowSearchBloc(
-      locator(),
-    ),
-  );
+  locator.registerFactory(() => SearchBloc(locator()));
+  locator.registerFactory(() => MovieNowPlayingBloc(locator()));
+  locator.registerFactory(() => MoviePopularBloc(locator()));
+  locator.registerFactory(() => MovieTopRatedBloc(locator()));
+  locator.registerFactory(() => TvShowNowPlayingBloc(locator()));
+  locator.registerFactory(() => TvShowPopularBloc(locator()));
+  locator.registerFactory(() => TvShowTopRatedBloc(locator()));
+  locator.registerFactory(() => TvShowSearchBloc(locator()));
 
   // helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());

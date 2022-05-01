@@ -9,7 +9,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../../dummy_data/dummy_objects.dart';
-import '../../../provider/movie/movie_list_notifier_test.mocks.dart';
+import 'movie_rop_rated_bloc_test.mocks.dart';
 
 @GenerateMocks([GetTopRatedMovies])
 void main() {

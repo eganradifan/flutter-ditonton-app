@@ -9,7 +9,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../../dummy_data/dummy_objects.dart';
-import '../../../provider/tv_show/now_playing_tv_show_notifier_test.mocks.dart';
+import 'tv_show_now_playing_bloc_test.mocks.dart';
 
 @GenerateMocks([GetNowPlayingTvShows])
 void main() {
