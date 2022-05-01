@@ -15,7 +15,7 @@ void main() {
     usecase = SearchTvShows(mockTvShowRepository);
   });
 
-  final tvShowName = 'Digimon';
+  const tvShowName = 'Digimon';
   final tvShows = <TvShow>[];
 
   test('should get list of top rated tv shows from the repository', () async {

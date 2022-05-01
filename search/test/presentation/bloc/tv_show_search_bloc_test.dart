@@ -22,7 +22,7 @@ void main() {
   });
 
   final tTvShowList = <TvShow>[tvShow];
-  final tQuery = 'spiderman';
+  const tQuery = 'spiderman';
 
   test('initial state should be empty', () {
     expect(searchBloc.state, TvShowSearchEmpty());
