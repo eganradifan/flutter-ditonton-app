@@ -40,6 +40,8 @@ import 'package:core/presentation/bloc/tv_show/top_rated/tv_show_top_rated_bloc.
 import 'package:core/presentation/bloc/movie/now_playing/movie_now_playing_bloc.dart';
 import 'package:core/presentation/bloc/movie/popular/movie_popular_bloc.dart';
 import 'package:core/presentation/bloc/movie/top_rated/movie_top_rated_bloc.dart';
+import 'package:core/presentation/bloc/tv_show/watchlist/tv_show_watchlist_bloc.dart';
+import 'package:core/presentation/bloc/movie/watchlist/movie_watchlist_bloc.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
@@ -128,10 +130,12 @@ void init() {
   locator.registerFactory(() => MovieNowPlayingBloc(locator()));
   locator.registerFactory(() => MoviePopularBloc(locator()));
   locator.registerFactory(() => MovieTopRatedBloc(locator()));
+  locator.registerFactory(() => MovieWatchlistBloc(locator()));
   locator.registerFactory(() => TvShowNowPlayingBloc(locator()));
   locator.registerFactory(() => TvShowPopularBloc(locator()));
   locator.registerFactory(() => TvShowTopRatedBloc(locator()));
   locator.registerFactory(() => TvShowSearchBloc(locator()));
+  locator.registerFactory(() => TvShowWatchlistBloc(locator()));
 
   // helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());

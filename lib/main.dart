@@ -21,6 +21,8 @@ import 'package:search/presentation/bloc/tv_show_search_bloc.dart';
 import 'package:core/presentation/bloc/tv_show/now_playing/tv_show_now_playing_bloc.dart';
 import 'package:core/presentation/bloc/tv_show/popular/tv_show_popular_bloc.dart';
 import 'package:core/presentation/bloc/tv_show/top_rated/tv_show_top_rated_bloc.dart';
+import 'package:core/presentation/bloc/tv_show/watchlist/tv_show_watchlist_bloc.dart';
+import 'package:core/presentation/bloc/movie/watchlist/movie_watchlist_bloc.dart';
 import 'package:core/presentation/bloc/movie/now_playing/movie_now_playing_bloc.dart';
 import 'package:core/presentation/bloc/movie/popular/movie_popular_bloc.dart';
 import 'package:core/presentation/bloc/movie/top_rated/movie_top_rated_bloc.dart';
@@ -69,6 +71,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.locator<TvShowTopRatedBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TvShowWatchlistBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<MovieWatchlistBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<MovieNowPlayingBloc>(),
