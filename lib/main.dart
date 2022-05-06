@@ -10,11 +10,6 @@ import 'package:core/presentation/pages/tv_show_detail_page.dart';
 import 'package:core/presentation/pages/tv_show_list_page.dart';
 import 'package:core/presentation/pages/watchlist_movies_page.dart';
 
-import 'package:core/presentation/provider/movie/movie_detail_notifier.dart';
-import 'package:core/presentation/provider/movie/watchlist_movie_notifier.dart';
-import 'package:core/presentation/provider/tv_show/tv_show_detail_notifier.dart';
-import 'package:core/presentation/provider/tv_show/watchlist_tv_show_notifier.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search/presentation/bloc/search_bloc.dart';
 import 'package:search/presentation/bloc/tv_show_search_bloc.dart';
@@ -29,6 +24,9 @@ import 'package:core/presentation/bloc/movie/watchlist/movie_watchlist_bloc.dart
 import 'package:core/presentation/bloc/movie/now_playing/movie_now_playing_bloc.dart';
 import 'package:core/presentation/bloc/movie/popular/movie_popular_bloc.dart';
 import 'package:core/presentation/bloc/movie/top_rated/movie_top_rated_bloc.dart';
+import 'package:core/presentation/bloc/movie/detail/movie_detail_bloc.dart';
+import 'package:core/presentation/bloc/movie/detail/movie_detail_recommendation_bloc.dart';
+import 'package:core/presentation/bloc/movie/detail/movie_detail_watchlist_bloc.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -48,9 +46,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieDetailNotifier>(),
-        ),
         BlocProvider(
           create: (_) => di.locator<SearchBloc>(),
         ),
@@ -90,6 +85,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<MovieTopRatedBloc>(),
         ),
+        BlocProvider(
+          create: (_) => di.locator<MovieDetailBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<MovieDetailRecommendationBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<MovieDetailWatchlistBloc>(),
+        )
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
