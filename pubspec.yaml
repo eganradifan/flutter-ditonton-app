@@ -46,13 +46,19 @@ dependencies:
   flutter_bloc: ^8.0.0
   firebase_core: ^1.6.0
   firebase_crashlytics: ^2.6.3
-  
+  sqflite_sqlcipher: ^2.1.0
+  encrypt: ^5.0.1
+  rxdart: ^0.27.1
+  mocktail: ^0.3.0
+
 dev_dependencies:
   mockito: ^5.0.8
   build_runner: ^2.0.4
   flutter_test:
     sdk: flutter
-
+  flutter_lints: ^1.0.0
+  bloc_test: ^9.0.0
+  
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
