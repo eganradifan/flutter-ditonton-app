@@ -1,8 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
-import 'package:core/presentation/bloc/tv_show/detail/tv_show_detail_bloc.dart';
-import 'package:core/presentation/bloc/tv_show/detail/tv_show_detail_recommendation_bloc.dart';
-import 'package:core/presentation/bloc/tv_show/detail/tv_show_detail_watchlist_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/genre.dart';
 import '../../domain/entities/tv_show/tv_show_detail.dart';
@@ -46,7 +43,7 @@ class _TvShowDetailPageState extends State<TvShowDetailPage> {
           } else if (state is TvShowDetailHasData) {
             final tvShow = state.result;
             return SafeArea(
-              child: DetailContent(
+              child: TvShowDetailContent(
                 tvShow,
               ),
             );
@@ -61,10 +58,10 @@ class _TvShowDetailPageState extends State<TvShowDetailPage> {
   }
 }
 
-class DetailContent extends StatelessWidget {
+class TvShowDetailContent extends StatelessWidget {
   final TvShowDetail tvShow;
 
-  DetailContent(this.tvShow);
+  TvShowDetailContent(this.tvShow);
 
   @override
   Widget build(BuildContext context) {

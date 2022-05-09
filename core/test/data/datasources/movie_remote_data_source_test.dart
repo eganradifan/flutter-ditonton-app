@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:core/data/datasources/movie_remote_data_source.dart';
 import 'package:core/data/models/movies/movie_detail_model.dart';
 import 'package:core/core.dart';
 import 'package:core/data/models/movies/movie_response.dart';

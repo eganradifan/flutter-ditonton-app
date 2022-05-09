@@ -1,33 +1,8 @@
 import 'package:core/core.dart';
 import 'package:about/about.dart';
-import 'package:core/presentation/pages/movie_detail_page.dart';
-import 'package:core/presentation/pages/home_movie_page.dart';
-import 'package:core/presentation/pages/now_playing_page.dart';
-import 'package:core/presentation/pages/popular_movies_page.dart';
-import 'package:core/utils/http_ssl_pinning.dart';
-import 'package:search/presentation/pages/search_page.dart';
-import 'package:core/presentation/pages/top_rated_movies_page.dart';
-import 'package:core/presentation/pages/tv_show_detail_page.dart';
-import 'package:core/presentation/pages/tv_show_list_page.dart';
-import 'package:core/presentation/pages/watchlist_movies_page.dart';
+import 'package:search/search.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:search/presentation/bloc/search_bloc.dart';
-import 'package:search/presentation/bloc/tv_show_search_bloc.dart';
-import 'package:core/presentation/bloc/tv_show/now_playing/tv_show_now_playing_bloc.dart';
-import 'package:core/presentation/bloc/tv_show/popular/tv_show_popular_bloc.dart';
-import 'package:core/presentation/bloc/tv_show/top_rated/tv_show_top_rated_bloc.dart';
-import 'package:core/presentation/bloc/tv_show/watchlist/tv_show_watchlist_bloc.dart';
-import 'package:core/presentation/bloc/tv_show/detail/tv_show_detail_bloc.dart';
-import 'package:core/presentation/bloc/tv_show/detail/tv_show_detail_recommendation_bloc.dart';
-import 'package:core/presentation/bloc/tv_show/detail/tv_show_detail_watchlist_bloc.dart';
-import 'package:core/presentation/bloc/movie/watchlist/movie_watchlist_bloc.dart';
-import 'package:core/presentation/bloc/movie/now_playing/movie_now_playing_bloc.dart';
-import 'package:core/presentation/bloc/movie/popular/movie_popular_bloc.dart';
-import 'package:core/presentation/bloc/movie/top_rated/movie_top_rated_bloc.dart';
-import 'package:core/presentation/bloc/movie/detail/movie_detail_bloc.dart';
-import 'package:core/presentation/bloc/movie/detail/movie_detail_recommendation_bloc.dart';
-import 'package:core/presentation/bloc/movie/detail/movie_detail_watchlist_bloc.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

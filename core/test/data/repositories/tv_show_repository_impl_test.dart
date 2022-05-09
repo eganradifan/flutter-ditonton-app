@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
 import 'package:core/data/models/tv_show/tv_show_model.dart';
-import 'package:core/data/repositories/tv_show_repository_impl.dart';
 import 'package:core/domain/entities/tv_show/tv_show.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import 'package:core/data/models/genre_model.dart';
 import 'package:core/data/models/movies/movie_detail_model.dart';
 import 'package:core/data/models/movies/movie_model.dart';
-import 'package:core/data/repositories/movie_repository_impl.dart';
 import 'package:core/core.dart';
 import 'package:core/domain/entities/movies/movie.dart';
 import 'package:flutter_test/flutter_test.dart';

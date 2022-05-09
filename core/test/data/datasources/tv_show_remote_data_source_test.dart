@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:core/core.dart';
-import 'package:core/data/datasources/tv_show_remote_data_source.dart';
 import 'package:core/data/models/tv_show/tv_show_detail.dart';
 import 'package:core/data/models/tv_show/tv_show_response.dart';
 import 'package:flutter_test/flutter_test.dart';

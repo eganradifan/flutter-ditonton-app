@@ -1,9 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
-import 'package:core/domain/usecases/movie/get_watchlist_status.dart';
-import 'package:core/domain/usecases/movie/remove_watchlist.dart';
-import 'package:core/domain/usecases/movie/save_watchlist.dart';
-import 'package:core/presentation/bloc/movie/detail/movie_detail_watchlist_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -38,7 +34,7 @@ void main() {
           .thenAnswer((_) async => true);
       return tvShowDetailWatchlistBloc;
     },
-    act: (bloc) => bloc.add(LoadWatchlistStatus(1)),
+    act: (bloc) => bloc.add(LoadMovieWatchlistStatus(1)),
     wait: const Duration(milliseconds: 500),
     expect: () => [
       MovieWatchlistStatusLoaded(true),
@@ -57,7 +53,7 @@ void main() {
           .thenAnswer((_) async => true);
       return tvShowDetailWatchlistBloc;
     },
-    act: (bloc) => bloc.add(AddWatchlist(testMovieDetail)),
+    act: (bloc) => bloc.add(AddMovieWatchlist(testMovieDetail)),
     wait: const Duration(milliseconds: 500),
     expect: () => [
       MovieDetailWatchlistActionSuccess("Success"),
@@ -77,7 +73,7 @@ void main() {
           .thenAnswer((_) async => false);
       return tvShowDetailWatchlistBloc;
     },
-    act: (bloc) => bloc.add(RemoveFromWatchlist(testMovieDetail)),
+    act: (bloc) => bloc.add(RemoveMovieFromWatchlist(testMovieDetail)),
     wait: const Duration(milliseconds: 500),
     expect: () => [
       MovieDetailWatchlistActionSuccess("Success"),
@@ -97,7 +93,7 @@ void main() {
           .thenAnswer((_) async => false);
       return tvShowDetailWatchlistBloc;
     },
-    act: (bloc) => bloc.add(AddWatchlist(testMovieDetail)),
+    act: (bloc) => bloc.add(AddMovieWatchlist(testMovieDetail)),
     wait: const Duration(milliseconds: 500),
     expect: () => [
       MovieDetailWatchlistActionError("Failed"),
@@ -117,7 +113,7 @@ void main() {
           .thenAnswer((_) async => true);
       return tvShowDetailWatchlistBloc;
     },
-    act: (bloc) => bloc.add(RemoveFromWatchlist(testMovieDetail)),
+    act: (bloc) => bloc.add(RemoveMovieFromWatchlist(testMovieDetail)),
     wait: const Duration(milliseconds: 500),
     expect: () => [
       MovieDetailWatchlistActionError("Failed"),

@@ -1,8 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
-import 'package:core/presentation/bloc/movie/detail/movie_detail_bloc.dart';
-import 'package:core/presentation/bloc/movie/detail/movie_detail_recommendation_bloc.dart';
-import 'package:core/presentation/bloc/movie/detail/movie_detail_watchlist_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/genre.dart';
 import '../../domain/entities/movies/movie_detail.dart';
@@ -31,7 +28,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       BlocProvider.of<MovieDetailRecommendationBloc>(context, listen: false)
           .add(FetchMovieRecommendation(widget.id));
       BlocProvider.of<MovieDetailWatchlistBloc>(context, listen: false)
-          .add(LoadWatchlistStatus(widget.id));
+          .add(LoadMovieWatchlistStatus(widget.id));
     });
   }
 
@@ -183,11 +180,11 @@ class DetailContent extends StatelessWidget {
               if (!state.status) {
                 BlocProvider.of<MovieDetailWatchlistBloc>(context,
                         listen: false)
-                    .add(AddWatchlist(movie));
+                    .add(AddMovieWatchlist(movie));
               } else {
                 BlocProvider.of<MovieDetailWatchlistBloc>(context,
                         listen: false)
-                    .add(RemoveFromWatchlist(movie));
+                    .add(RemoveMovieFromWatchlist(movie));
               }
             },
             child: Row(

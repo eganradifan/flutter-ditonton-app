@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 import 'package:core/domain/entities/movies/movie.dart';
-import 'package:core/domain/repositories/movie_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class SearchMovies {

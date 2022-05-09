@@ -7,17 +7,17 @@ abstract class MovieDetailWatchlistEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class AddWatchlist extends MovieDetailWatchlistEvent {
+class AddMovieWatchlist extends MovieDetailWatchlistEvent {
   final MovieDetail tvShowDetail;
-  AddWatchlist(this.tvShowDetail);
+  AddMovieWatchlist(this.tvShowDetail);
 }
 
-class RemoveFromWatchlist extends MovieDetailWatchlistEvent {
+class RemoveMovieFromWatchlist extends MovieDetailWatchlistEvent {
   final MovieDetail tvShowDetail;
-  RemoveFromWatchlist(this.tvShowDetail);
+  RemoveMovieFromWatchlist(this.tvShowDetail);
 }
 
-class LoadWatchlistStatus extends MovieDetailWatchlistEvent {
+class LoadMovieWatchlistStatus extends MovieDetailWatchlistEvent {
   final int id;
-  LoadWatchlistStatus(this.id);
+  LoadMovieWatchlistStatus(this.id);
 }

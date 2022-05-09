@@ -19,7 +19,7 @@ class MovieDetailWatchlistBloc
     this.getWatchListStatus,
     this.removeWatchlist,
   ) : super(MovieDetailWatchlistEmpty()) {
-    on<AddWatchlist>((event, emit) async {
+    on<AddMovieWatchlist>((event, emit) async {
       final result = await saveWatchlist.execute(event.tvShowDetail);
 
       await result.fold(
@@ -30,10 +30,10 @@ class MovieDetailWatchlistBloc
           emit(MovieDetailWatchlistActionSuccess(successMessage));
         },
       );
-      add(LoadWatchlistStatus(event.tvShowDetail.id));
+      add(LoadMovieWatchlistStatus(event.tvShowDetail.id));
     });
 
-    on<RemoveFromWatchlist>((event, emit) async {
+    on<RemoveMovieFromWatchlist>((event, emit) async {
       final result = await removeWatchlist.execute(event.tvShowDetail);
 
       await result.fold(
@@ -44,10 +44,10 @@ class MovieDetailWatchlistBloc
           emit(MovieDetailWatchlistActionSuccess(successMessage));
         },
       );
-      add(LoadWatchlistStatus(event.tvShowDetail.id));
+      add(LoadMovieWatchlistStatus(event.tvShowDetail.id));
     });
 
-    on<LoadWatchlistStatus>((event, emit) async {
+    on<LoadMovieWatchlistStatus>((event, emit) async {
       final result = await getWatchListStatus.execute(event.id);
       emit(MovieWatchlistStatusLoaded(result));
     });

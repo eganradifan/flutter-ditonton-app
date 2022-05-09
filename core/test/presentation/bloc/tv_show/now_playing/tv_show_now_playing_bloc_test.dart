@@ -1,8 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
 import 'package:core/domain/entities/tv_show/tv_show.dart';
-import 'package:core/domain/usecases/tv_show/get_now_playing_tv_show.dart';
-import 'package:core/presentation/bloc/tv_show/now_playing/tv_show_now_playing_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

@@ -1,8 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
 import 'package:core/domain/entities/movies/movie.dart';
-import 'package:core/domain/usecases/movie/get_popular_movies.dart';
-import 'package:core/presentation/bloc/movie/popular/movie_popular_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

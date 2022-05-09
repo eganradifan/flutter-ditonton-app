@@ -1,9 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
-import 'package:core/domain/usecases/tv_show/get_tv_show_watchlist_status.dart';
-import 'package:core/domain/usecases/tv_show/tv_show_remove_watchlist.dart';
-import 'package:core/domain/usecases/tv_show/tv_show_save_watchlist.dart';
-import 'package:core/presentation/bloc/tv_show/detail/tv_show_detail_watchlist_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
