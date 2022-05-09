@@ -12,7 +12,7 @@ class DetailBackButton extends StatelessWidget {
         backgroundColor: kRichBlack,
         foregroundColor: Colors.white,
         child: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },

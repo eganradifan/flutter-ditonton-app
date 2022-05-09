@@ -46,7 +46,6 @@ import 'package:core/presentation/bloc/movie/detail/movie_detail_bloc.dart';
 import 'package:core/presentation/bloc/movie/detail/movie_detail_recommendation_bloc.dart';
 import 'package:core/presentation/bloc/movie/detail/movie_detail_watchlist_bloc.dart';
 
-import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
 final locator = GetIt.instance;

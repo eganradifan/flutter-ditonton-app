@@ -7,15 +7,15 @@ class RecommendationsPoster extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.all(
+      borderRadius: const BorderRadius.all(
         Radius.circular(8),
       ),
       child: CachedNetworkImage(
         imageUrl: 'https://image.tmdb.org/t/p/w500$posterPath',
-        placeholder: (context, url) => Center(
+        placeholder: (context, url) => const Center(
           child: CircularProgressIndicator(),
         ),
-        errorWidget: (context, url, error) => Icon(Icons.error),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
     );
   }

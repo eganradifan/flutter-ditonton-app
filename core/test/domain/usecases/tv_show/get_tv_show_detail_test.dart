@@ -15,7 +15,7 @@ void main() {
     usecase = GetTvShowDetail(mockTvShowRepository);
   });
 
-  final tvShowsId = 1668;
+  const tvShowsId = 1668;
   test('should get detail of tv shows from the repository', () async {
     // arrange
     when(mockTvShowRepository.getTvShowDetail(tvShowsId))

@@ -55,7 +55,7 @@ void main() {
     'Should emit [ActionSuccess, StatusLoaded] when data is saved successfully',
     build: () {
       when(mockTvShowSaveWatchlist.execute(tvShowDetailEntity))
-          .thenAnswer((_) async => Right("Success"));
+          .thenAnswer((_) async => const Right("Success"));
       when(mockGetTvShowWatchListStatus.execute(1668))
           .thenAnswer((_) async => true);
       return tvShowDetailWatchlistBloc;
@@ -75,7 +75,7 @@ void main() {
     'Should emit [ActionSuccess, StatusLoaded] when data is removed successfully',
     build: () {
       when(mockTvShowRemoveWatchlist.execute(tvShowDetailEntity))
-          .thenAnswer((_) async => Right("Success"));
+          .thenAnswer((_) async => const Right("Success"));
       when(mockGetTvShowWatchListStatus.execute(1668))
           .thenAnswer((_) async => false);
       return tvShowDetailWatchlistBloc;

@@ -25,7 +25,7 @@ void main() {
   });
 
   group("get tv show detail", () {
-    final tId = 1668;
+    const tId = 1668;
     final tvShowResponse = TvShowDetailModel.fromJson(
         json.decode(readJson('dummy_data/tv_show_detail.json')));
 
@@ -154,7 +154,7 @@ void main() {
   });
 
   group("get recommendations tv show", () {
-    final tvId = 45790;
+    const tvId = 45790;
     final tvShowResponse = TvShowResponse.fromJson(
         json.decode(readJson('dummy_data/tv_show_recommendations.json')));
 
@@ -189,7 +189,7 @@ void main() {
   });
 
   group("get search tv show", () {
-    final query = "digimon";
+    const query = "digimon";
     final tvShowResponse = TvShowResponse.fromJson(
         json.decode(readJson('dummy_data/tv_show_search.json')));
 

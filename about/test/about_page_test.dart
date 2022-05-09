@@ -8,9 +8,8 @@ void main() {
   });
 
   testWidgets('should have text and icon', (WidgetTester tester) async {
-    Widget testWidget = new MediaQuery(
-        data: new MediaQueryData(),
-        child: new MaterialApp(home: new AboutPage()));
+    Widget testWidget = MediaQuery(
+        data: const MediaQueryData(), child: MaterialApp(home: AboutPage()));
     await tester.pumpWidget(testWidget);
 
     expect(find.byType(Text), findsOneWidget);
