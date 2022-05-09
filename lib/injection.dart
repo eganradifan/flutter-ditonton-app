@@ -17,6 +17,7 @@ import 'package:core/domain/usecases/movie/get_watchlist_movies.dart';
 import 'package:core/domain/usecases/movie/get_watchlist_status.dart';
 import 'package:core/domain/usecases/movie/remove_watchlist.dart';
 import 'package:core/domain/usecases/movie/save_watchlist.dart';
+import 'package:core/utils/http_ssl_pinning.dart';
 import 'package:search/domain/usecases/movie/search_movies.dart';
 import 'package:core/domain/usecases/tv_show/get_popular_tv_shows.dart';
 import 'package:core/domain/usecases/tv_show/get_top_rated_tv_shows.dart';
@@ -122,5 +123,5 @@ void init() {
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
   // external
-  locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton(() => HttpSSLPinning.client);
 }
